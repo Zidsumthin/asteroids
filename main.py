@@ -23,6 +23,8 @@ def main():
                 return
         screen.fill((0,0,0))
         my_character.draw(screen)
+        my_character.update(dt)
+        dt = timer.tick(60) / 1000
         pygame.display.flip()
         timer.tick()
 
