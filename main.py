@@ -3,6 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
+from player import *
 
 def main():
     pygame.init()
@@ -11,11 +12,17 @@ def main():
     timer = pygame.time.Clock()
     dt = 0
 
+    player_x = SCREEN_WIDTH / 2
+    player_y = SCREEN_HEIGHT / 2
+
+    my_character = Player(player_x, player_y)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0))
+        my_character.draw(screen)
         pygame.display.flip()
         timer.tick()
 
