@@ -11,7 +11,6 @@ from asteroidfield import *
 def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
     timer = pygame.time.Clock()
     dt = 0
 
@@ -36,17 +35,25 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
-        
         updateable.update(dt)
+
         for i in asteroids:
-            if i.collision_check(my_character) == True:
+            for k in shots:
+                if CircleShape.collision_check(i, k):
+                    i.split()
+                    k.kill()
+
+            if i.collision_check(my_character):
                 print("Game over!")
                 sys.exit()
+
         screen.fill((0,0,0))
+
         for i in drawable:
             i.draw(screen)
         
         pygame.display.flip()
+
         dt = timer.tick(60) / 1000
         
 
